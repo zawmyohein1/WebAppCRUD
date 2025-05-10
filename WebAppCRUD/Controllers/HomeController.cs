@@ -7,14 +7,17 @@ namespace WebAppCRUD.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly CRUDDbContext _crudDbContext;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, CRUDDbContext dbContext)
         {
             _logger = logger;
+            _crudDbContext = dbContext;
         }
 
         public IActionResult Index()
         {
+            var employees = _crudDbContext.Employees;
             return View();
         }
 
